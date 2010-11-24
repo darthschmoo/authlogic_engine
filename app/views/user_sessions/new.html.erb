@@ -1,5 +1,7 @@
 <h1>Login</h1>
 
+<p>Not a member yet?  <%= link_to "Create an account", new_user_url %></p>
+
 <%= form_for :user_session, :url => user_sessions_path do |f| %>
   <%= f.error_messages %>
   <%= f.label :login %><br />

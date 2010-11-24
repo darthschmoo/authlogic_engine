@@ -1,13 +1,87 @@
-AuthLoginEngine
+AuthLogicEngine
 ===============
 
-Introduction goes here.
+_STILL VERY MUCH IN BETA_
 
 
-Example
+Why would I want to use this?
+=============================
+
+* Educational purposes
+* A starting point for a more robust authlogic login system.
+
+
+
+
+Steps for installing plugin
+===========================
+
+bq. rails new my_project
+cd my_project
+script/rails plugin install https://github.com/darthschmoo/authlogic_engine.git
+Add the following line to your Gemfile:  gem 'authlogic'
+Add the following line to your controllers/application_controller.rb file:  'include AuthlogicController'
+To create the 'users' table:  
+
+  script/rails g create_users_migration; rake db:migrate
+
+
+Verifying that it's working
+===========================
+
+Type 'rake routes' at the command line.  You should get something like this:
+          account POST   /account(.:format)                {:controller=>"users", :action=>"create"}
+      new_account GET    /account/new(.:format)            {:controller=>"users", :action=>"new"}
+     edit_account GET    /account/edit(.:format)           {:controller=>"users", :action=>"edit"}
+          account GET    /account(.:format)                {:controller=>"users", :action=>"show"}
+          account PUT    /account(.:format)                {:controller=>"users", :action=>"update"}
+          account DELETE /account(.:format)                {:controller=>"users", :action=>"destroy"}
+            users GET    /users(.:format)                  {:controller=>"users", :action=>"index"}
+            users POST   /users(.:format)                  {:controller=>"users", :action=>"create"}
+         new_user GET    /users/new(.:format)              {:controller=>"users", :action=>"new"}
+        edit_user GET    /users/:id/edit(.:format)         {:controller=>"users", :action=>"edit"}
+             user GET    /users/:id(.:format)              {:controller=>"users", :action=>"show"}
+             user PUT    /users/:id(.:format)              {:controller=>"users", :action=>"update"}
+             user DELETE /users/:id(.:format)              {:controller=>"users", :action=>"destroy"}
+    user_sessions GET    /user_sessions(.:format)          {:controller=>"user_sessions", :action=>"index"}
+    user_sessions POST   /user_sessions(.:format)          {:controller=>"user_sessions", :action=>"create"}
+ new_user_session GET    /user_sessions/new(.:format)      {:controller=>"user_sessions", :action=>"new"}
+edit_user_session GET    /user_sessions/:id/edit(.:format) {:controller=>"user_sessions", :action=>"edit"}
+     user_session GET    /user_sessions/:id(.:format)      {:controller=>"user_sessions", :action=>"show"}
+     user_session PUT    /user_sessions/:id(.:format)      {:controller=>"user_sessions", :action=>"update"}
+     user_session DELETE /user_sessions/:id(.:format)      {:controller=>"user_sessions", :action=>"destroy"}
+           logout        /logout(.:format)                 {:controller=>"user_sessions", :action=>"destroy"}
+            login        /login(.:format)                  {:controller=>"user_sessions", :action=>"new"}
+           signup        /signup(.:format)                 {:controller=>"user", :action=>"new"}
+
+
+Start the server:  script/rails s
+
+Open a browser to localhost:3000/signup
+
+Play around.
+    
+    
+What you can do with it
+=======================
+
+
+
+
+Hopes for the future
+====================
+
+* Basic stuff works out of the box, minimum of hassles.
+* Get authorization up and running faster.
+* Include option for open_id
+* Include roles/permissions
+
+
+
+Credits
 =======
 
-Example goes here.
+A good deal of the code was lifted from authlogic_example project.  https://github.com/binarylogic/authlogic_example
 
 
-Copyright (c) 2010 [name of plugin creator], released under the MIT license
+Copyright (c) 2010 Bryce Anderson, released under the MIT license
